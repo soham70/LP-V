@@ -46,8 +46,5 @@ class Tring{
             // TODO: handle exception
             System.out.println(e);
         }
-
-
-
     }
 }

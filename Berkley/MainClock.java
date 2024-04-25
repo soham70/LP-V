@@ -5,17 +5,20 @@ import java.time.format.DateTimeFormatter;
 public class MainClock {
     public static void main(String[] args) {
         try{
-            String clock1 ="rmi://" + "127.0.0.1/" +args[0];
-            String clock2 ="rmi://" + "127.0.0.1/" +args[1];
-            String clock3 ="rmi://" + "127.0.0.1/" +args[2];
+             String clock1="rmi://" + "/127.0.0.1" +args[0];
 
-            LocalTime serverTime =LocalTime.parse("03:00:00",DateTimeFormatter.ofPattern("HH:mm:ss"));
+            LocalTime serverTime = LocalTime.parse("03:00:00",DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-            System.out.println("Server Time is "+serverTime);
+            System.out.println("Server Time" + serverTime);
 
             ServerIntf c1 = (ServerIntf) Naming.lookup(clock1);
             System.out.println(c1.getTime());
-    
+
+            String clock2 ="rmi://" + "127.0.0.1/" +args[1];
+            String clock3 ="rmi://" + "127.0.0.1/" +args[2];
+
+            System.out.println("Server Time is "+serverTime);
+
             ServerIntf c2 = (ServerIntf) Naming.lookup(clock2);
             System.out.println(c2.getTime());
     
@@ -32,10 +35,10 @@ public class MainClock {
             c1.adjustTime(serverTime, avg);
             c2.adjustTime(serverTime, avg);
             c3.adjustTime(serverTime, avg);
-            serverTime.plusNanos(avg);
-    
-            System.out.println("updated time"+serverTime);
+            //serverTime.plusNanos(avg);
+           serverTime= LocalTime.ofNanoOfDay(serverNano+avg);
 
+            System.out.println("updated time"+serverTime);
         }
         catch(Exception e)
         {

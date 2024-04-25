@@ -118,7 +118,7 @@ public class Bully_Algo {
                     break;
 
                 case 5:
-                    System.out.println("Enter Process NUmber which will perform Election: ");
+                    System.out.println("Enter Process Number which will perform Election: ");
                     process_id=sc.nextInt();
                     ba.runElection(process_id);
                     ba.display();
